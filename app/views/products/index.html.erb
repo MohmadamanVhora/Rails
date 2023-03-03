@@ -1,7 +1,6 @@
-<table class="table container table-striped m-5">
+<table class="table container table-hover table-striped m-5">
   <thead>
     <tr>
-      <th scope="col">Id</th>
       <th scope="col">Product Name</th>
       <th scope="col">Category</th>
       <th scope="col">Price</th>
@@ -12,7 +11,6 @@
   <tbody>
     <% @products.each do |product| %>
       <tr>
-        <th scope="row"><%= product.id %></th>
         <td><%= product.name %></td>
         <td><%= product.category %></td>
         <td><%= product.price %></td>
@@ -30,4 +28,4 @@
   </tbody>
 </table>
 
-<a href="/products/new"><input class="btn btn-light m-5" type="submit" value="Add Product"></a>
+<a href="/products/new"><input class="btn btn-dark m-3 ms-5" type="submit" value="Add Product"></a>

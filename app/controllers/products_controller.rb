@@ -9,12 +9,10 @@ class ProductsController < ApplicationController
   end
 
   def new
-    binding.pry
     @product = Product.new
   end
 
   def create
-    binding.pry
     @product = Product.new(product_params)
   
     if @product.save

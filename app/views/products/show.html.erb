@@ -1,27 +1,31 @@
-<table class="table container table-striped m-5">
-  <thead>
-    <tr>
-      <th scope="col">Id</th>
-      <th scope="col">Product Name</th>
-      <th scope="col">Category</th>
-      <th scope="col">Price</th>
-      <th scope="col">Description</th>
-      <th scope="col">Action</th>
-    </tr>
-  </thead>
+<table class="table container table-hover table-striped m-5">
   <tbody>
     <tr>
-      <th scope="col"><%= @product.id %></th>
+      <th scope="row">Product Name</th>
       <td><%= @product.name %></td>
+    </tr>
+    
+    <tr>
+      <th scope="row">Category</th>
       <td><%= @product.category %></td>
+    </tr>
+
+    <tr>
+      <th scope="row">Price</th>
       <td><%= @product.price %></td>
+    </tr>
+
+    <tr>
+      <th scope="row">Description</th>
       <td><%= @product.description %></td>
-      <td><%= link_to "Edit", edit_product_path(@product) %> | 
-        <%= link_to "Delete", product_path(@product), data: {
-          turbo_method: :delete,
-          turbo_confirm: :"Are You Sure?"
-        } %>
-      </td>
     </tr>
   </tbody>
 </table>
+
+<div class="container m-0 p-0">
+  <%= link_to "Edit", edit_product_path(@product), :class => 'btn btn-dark ms-5 me-3 px-4' %>
+  <%= link_to "Delete", product_path(@product), :class => 'btn btn-dark', data: {
+    turbo_method: :delete,
+    turbo_confirm: :"Are You Sure?"
+  } %>
+</div>
