@@ -1,0 +1,31 @@
+<table class="table container table-hover table-striped m-5">
+  <thead>
+    <tr>
+      <th scope="col">First Name</th>
+      <th scope="col">Last Name</th>
+      <th scope="col">Date of Birth</th>
+      <th scope="col">Email</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @authors.each do |author| %>
+      <tr>
+        <td><%= author.first_name %></td>
+        <td><%= author.last_name %></td>
+        <td><%= author.dob %></td>
+        <td><%= author.email %></td>
+        <td>
+          <%= link_to "Show", author_path(author) %> | 
+          <%= link_to "Edit", edit_author_path(author) %> | 
+          <%= link_to "Delete", author_path(author), data: {
+            turbo_method: :delete,
+            turbo_confirm: :"Are You Sure?"
+          } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<a href="/authors/new"><input class="btn btn-dark m-3 ms-5" type="submit" value="Add Author"></a>

@@ -1,0 +1,39 @@
+<%= form_with model: @book do |form| %>
+  <div class="row g-3 align-items-center  m-2">
+    <div class="col-auto">
+      <%= form.label :name, :class => 'col-form-label' %>
+    </div>
+    <div class="col-auto">
+      <%= form.text_field :name, :class => "form-control", :placeholder => "Enter Book Name"%>
+      <% @book.errors.full_messages_for(:name).each do |message| %>
+        <div><%= message %></div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="row g-3 align-items-center m-2">
+    <div class="col-auto">
+      <%= form.label :price, :class => 'col-form-label' %>
+    </div>
+    <div class="col-auto">
+      <%= form.number_field :price, :class => "form-control", :placeholder => "Enter Book Price"%>
+      <% @book.errors.full_messages_for(:price).each do |message| %>
+        <div><%= message %></div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="row g-3 align-items-center m-2">
+    <div class="col-auto">
+      <%= form.label :authorId, :class => 'col-form-label' %>
+    </div>
+    <div class="col-auto">
+      <%= form.number_field :author_id, :class => "form-control", :placeholder => "Enter Author's Id"%>
+      <% @book.errors.full_messages_for(:author_id).each do |message| %>
+        <div><%= message %></div>
+      <% end %>
+    </div>
+  </div>
+
+  <%= form.submit :class => 'btn btn-dark m-3' %>
+<% end %>
