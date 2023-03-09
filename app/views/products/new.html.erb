@@ -1,0 +1,51 @@
+<%= form_with model: @product do |form| %>
+  <div class="row g-3 align-items-center  m-2">
+    <div class="col-auto">
+      <%= form.label :name, :class => 'col-form-label' %>
+    </div>
+    <div class="col-auto">
+      <%= form.text_field :name, :class => "form-control", :placeholder => "Enter Product Name"%>
+      <% @product.errors.full_messages_for(:name).each do |message| %>
+        <div><%= message %></div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="row g-3 align-items-center m-2">
+    <div class="col-auto">
+      <%= form.label :category, :class => 'col-form-label' %>
+    </div>
+    <div class="col-auto">
+      <%= form.text_field :category, :class => "form-control", :placeholder => "Enter Product Category"%>
+      <% @product.errors.full_messages_for(:category).each do |message| %>
+        <div><%= message %></div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="row g-3 align-items-center m-2">
+    <div class="col-auto">
+      <%= form.label :price, :class => 'col-form-label' %>
+    </div>
+    <div class="col-auto">
+      <%= form.number_field :price, :class => "form-control", :placeholder => "Enter Product Price"%>
+      <% @product.errors.full_messages_for(:price).each do |message| %>
+        <div><%= message %></div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="row g-3 align-items-center m-2">
+    <div class="col-auto">
+      <%= form.label :description, :class => 'col-form-label' %>
+    </div>
+    <div class="col-auto">
+      <%= form.text_field :description, :class => "form-control", :placeholder => "Enter Product Description"%>
+      <% @product.errors.full_messages_for(:description).each do |message| %>
+        <div><%= message %></div>
+      <% end %>
+    </div>
+  </div>
+
+  <%= form.submit :class => 'btn btn-dark m-3' %>
+<% end %>

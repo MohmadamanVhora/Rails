@@ -1,0 +1,31 @@
+<table class="table container table-hover table-striped m-5">
+  <tbody>
+    <tr>
+      <th scope="row">Product Name</th>
+      <td><%= @product.name %></td>
+    </tr>
+    
+    <tr>
+      <th scope="row">Category</th>
+      <td><%= @product.category %></td>
+    </tr>
+
+    <tr>
+      <th scope="row">Price</th>
+      <td><%= @product.price %></td>
+    </tr>
+
+    <tr>
+      <th scope="row">Description</th>
+      <td><%= @product.description %></td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="container m-0 p-0">
+  <%= link_to "Edit", edit_product_path(@product), :class => 'btn btn-dark ms-5 me-3 px-4' %>
+  <%= link_to "Delete", product_path(@product), :class => 'btn btn-dark', data: {
+    turbo_method: :delete,
+    turbo_confirm: :"Are You Sure?"
+  } %>
+</div>
