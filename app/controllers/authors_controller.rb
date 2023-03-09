@@ -5,8 +5,9 @@ class AuthorsController < ApplicationController
     @authors = Author.all
   end
 
+  before_action :find_author, only: [:show, :edit, :update, :destroy]
+
   def show
-    @author = Author.find(params[:id])
   end
 
   def new
@@ -24,12 +25,9 @@ class AuthorsController < ApplicationController
   end
 
   def edit
-    @author = Author.find(params[:id])
   end
 
   def update
-    @author = Author.find(params[:id])
-
     if @author.update(author_params)
       redirect_to @author
     else
@@ -38,7 +36,6 @@ class AuthorsController < ApplicationController
   end
 
   def destroy
-    @author = Author.find(params[:id])
     @author.destroy
 
     redirect_to authors_path, status: :see_other
@@ -46,6 +43,10 @@ class AuthorsController < ApplicationController
 
   private
   def author_params
-    params.require(:author).permit(:first_name, :last_name, :dob, :email)
+    params.require(:author).permit(:first_name, :last_name, :date_of_birth, :email)
+  end
+
+  def find_author
+    @author = Author.find(params[:id])
   end
 end

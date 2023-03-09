@@ -7,9 +7,5 @@
 #   Character.create(name: "Luke", movie: movies.first)
 
 10.times do |i|
-  if i<=4
-    Book.create(name: "Book#{i+5}", price: 1000+i, author_id: i+1)  
-  else
-    Book.create(name: "Book#{i+5}", price: 1000+i, author_id: i-4)  
-  end
+  Book.find_or_create_by(name: "Book#{i+20}", price: 1000 + i, author_id: Author.first.id)
 end
