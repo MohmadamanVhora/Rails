@@ -5,3 +5,7 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+
+10.times do |i|
+  Book.find_or_create_by(name: "Book#{i+20}", price: 1000 + i, author_id: Author.first.id)
+end

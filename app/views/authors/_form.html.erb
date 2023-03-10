@@ -1,0 +1,51 @@
+<%= form_with model: author do |form| %>
+  <div class="row g-3 align-items-center  m-2">
+    <div class="col-auto">
+      <%= form.label :name, :class => 'col-form-label' %>
+    </div>
+    <div class="col-auto">
+      <%= form.text_field :first_name, :class => "form-control", :placeholder => "Enter Author's First Name"%>
+      <% author.errors.full_messages_for(:first_name).each do |message| %>
+        <div><%= message %></div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="row g-3 align-items-center m-2">
+    <div class="col-auto">
+      <%= form.label :surname, :class => 'col-form-label' %>
+    </div>
+    <div class="col-auto">
+      <%= form.text_field :last_name, :class => "form-control", :placeholder => "Enter Author's Last Name"%>
+      <% author.errors.full_messages_for(:last_name).each do |message| %>
+        <div><%= message %></div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="row g-3 align-items-center m-2">
+    <div class="col-auto">
+      <%= form.label :birthdate, :class => 'col-form-label' %>
+    </div>
+    <div class="col-auto">
+      <%= form.date_field :date_of_birth, :class => "form-control", :placeholder => "Enter Author's Birthdate"%>
+      <% author.errors.full_messages_for(:date_of_birth).each do |message| %>
+        <div><%= message %></div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="row g-3 align-items-center m-2">
+    <div class="col-auto">
+      <%= form.label :email, :class => 'col-form-label' %>
+    </div>
+    <div class="col-auto">
+      <%= form.text_field :email, :class => "form-control", :placeholder => "Enter Author Email Address"%>
+      <% author.errors.full_messages_for(:email).each do |message| %>
+        <div><%= message %></div>
+      <% end %>
+    </div>
+  </div>
+
+  <%= form.submit :class => 'btn btn-dark m-3' %>
+<% end %>
