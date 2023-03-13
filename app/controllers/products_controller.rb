@@ -1,5 +1,4 @@
 class ProductsController < ApplicationController
-  layout 'header'
   def index
     @products = Product.all
   end

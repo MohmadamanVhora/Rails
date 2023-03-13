@@ -1,0 +1,65 @@
+<div class="d-flex justify-content-center">
+  <%= form_with model: faculty do |form| %>
+    <div class="row g-3 align-items-center mx-2">
+      <div class="col-3 d-flex ">
+        <%= form.label :name, :class => 'col-form-label grow-1' %>
+      </div>
+      <div class="col-9">
+        <%= form.text_field :first_name, :class => "form-control grow-2", :placeholder => "Enter Faculty's First Name"%>
+        <%= render 'error', faculty: faculty, field: :first_name %>
+      </div>
+    </div>
+
+    <div class="row g-3 align-items-center m-2">
+      <div class="col-3">
+        <%= form.label :surname, :class => 'col-form-label' %>
+      </div>
+      <div class="col-9">
+        <%= form.text_field :last_name, :class => "form-control", :placeholder => "Enter Faculty's Last Name"%>
+        <%= render 'error', faculty: faculty, field: :last_name %>
+      </div>
+    </div>
+
+    <div class="row g-3 align-items-center m-2">
+      <div class="col-3">
+        <%= form.label "Phone No.", :class => 'col-form-label' %>
+      </div>
+      <div class="col-9">
+        <%= form.text_field :phone_no, :class => "form-control", :placeholder => "Enter Faculty's Phone No."%>
+        <%= render 'error', faculty: faculty, field: :phone_no %>
+      </div>
+    </div>
+
+    <div class="row g-3 align-items-center m-2">
+      <div class="col-3">
+        <%= form.label :email, :class => 'col-form-label' %>
+      </div>
+      <div class="col-9">
+        <%= form.text_field :email, :class => "form-control", :placeholder => "Enter Faculty's Email Address"%>
+        <%= render 'error', faculty: faculty, field: :email %>
+      </div>
+    </div>
+
+    <div class="row g-3 align-items-center m-2">
+      <div class="col-3">
+        <%= form.label :birthdate, :class => 'col-form-label' %>
+      </div>
+      <div class="col-9">
+        <%= form.date_field :date_of_birth, :class => "form-control", :placeholder => "Enter Faculty's Birthdate"%>
+        <%= render 'error', faculty: faculty, field: :date_of_birth %>
+      </div>
+    </div>
+
+    <div class="row g-3 align-items-center m-2">
+      <div class="col-3">
+        <%= form.label :designation, :class => 'col-form-label' %>
+      </div>
+      <div class="col-9">
+        <%= form.text_field :designation, :class => "form-control", :placeholder => "Enter Faculty's Designation"%>
+        <%= render 'error', faculty: faculty, field: :designation %>
+      </div>
+    </div>
+
+    <%= form.submit :class => 'btn btn-dark m-3' %>
+  <% end %>
+</div>

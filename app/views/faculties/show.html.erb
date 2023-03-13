@@ -1,0 +1,44 @@
+<div class="container justify-content-center my-5">
+  <h1 class="container text-center text-decoration-underline my-5">Faculty Id - <%= @faculty.id %></h1>
+  <table class="table table-bordered container table-hover table-striped">
+  
+    <tbody>
+      <tr>
+        <th scope="row">Name</th>
+        <td><%= @faculty.first_name %></td>
+      </tr>
+      
+      <tr>
+        <th scope="row">Surname</th>
+        <td><%= @faculty.last_name %></td>
+      </tr>
+      
+      <tr>
+        <th scope="row">phone_no</th>
+        <td><%= @faculty.phone_no %></td>
+      </tr>
+
+      <tr>
+        <th scope="row">Email</th>
+        <td><%= @faculty.email %></td>
+      </tr>
+      
+      <tr>
+        <th scope="row">Date of Birth</th>
+        <td><%= @faculty.date_of_birth %></td>
+      </tr>
+      <tr>
+        <th scope="row">Designation</th>
+        <td><%= @faculty.designation %></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="my-4">
+    <%= link_to "Edit", edit_faculty_path(@faculty), :class => 'btn btn-dark px-4' %>
+    <%= link_to "Delete", faculty_path(@faculty), :class => 'btn btn-dark ms-3', data: {
+      turbo_method: :delete,
+      turbo_confirm: :"Are You Sure?"
+    } %>
+  </div>
+</div>

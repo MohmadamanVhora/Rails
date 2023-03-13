@@ -1,6 +1,4 @@
 class AuthorsController < ApplicationController
-  layout 'authors_header'
-
   def index
     @authors = Author.all
   end

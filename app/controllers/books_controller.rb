@@ -1,5 +1,4 @@
 class BooksController < ApplicationController
-  layout 'authors_header'
   
   before_action :find_book, only: [:show, :edit, :update, :destroy]
   
