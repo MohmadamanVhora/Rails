@@ -1,28 +1,25 @@
 class Student < ApplicationRecord
 
   HUMANIZED_ATTRIBUTES = {
-  :date_of_birth => "",
-  :term_of_usage => ""
+    :date_of_birth => "",
+    :term_of_usage => ""
   }
  
   validates :first_name, presence: true
   validates :last_name, presence: true
   validate :birthdate_validation
   validates_presence_of :department
-  validates :department, inclusion:{ in: %w(IT CE), message: "can't be '%{value}'"}, allow_blank: true
+  validates :department, inclusion:{ in: %w(IT CE), message: "can't be '%{value}'"}, if: -> { department.present? } 
   validates :term_of_usage, acceptance: { message: "You cannot proceed without accepting Terms of Usage" }
 
 
   def birthdate_validation
     if date_of_birth.nil?
       errors.add(:date_of_birth, "Birthdate can't be nil")
-    else
-      return unless date_of_birth.present? 
-      if date_of_birth > Date.current
-        errors.add(:date_of_birth, "Birthdate can't be in future")
-      elsif date_of_birth < Date.parse('1907-03-04')
-        errors.add(:date_of_birth, "No one is alive before Birth of 4th Mar 1907")
-      end
+    elsif date_of_birth > Date.current
+      errors.add(:date_of_birth, "Birthdate can't be in future")
+    elsif date_of_birth < Date.parse('1907-03-04')
+      errors.add(:date_of_birth, "No one is alive before Birth of 4th Mar 1907")
     end
   end
  
