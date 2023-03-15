@@ -1,0 +1,56 @@
+<div class="d-flex justify-content-center">
+  <%= form_with model: student do |form| %>
+    <div class="row g-3 align-items-center mx-2">
+      <div class="col-3 d-flex ">
+        <%= form.label :name, :class => 'col-form-label grow-1' %>
+      </div>
+      <div class="col-9">
+        <%= form.text_field :first_name, :class => "form-control grow-2", :placeholder => "Enter Student's First Name"%>
+        <%= render 'error', student: student, field: :first_name %>
+      </div>
+    </div>
+
+    <div class="row g-3 align-items-center m-2">
+      <div class="col-3">
+        <%= form.label :surname, :class => 'col-form-label' %>
+      </div>
+      <div class="col-9">
+        <%= form.text_field :last_name, :class => "form-control", :placeholder => "Enter Student's Last Name"%>
+        <%= render 'error', student: student, field: :last_name %>
+      </div>
+    </div>
+
+    <div class="row g-3 align-items-center m-2">
+      <div class="col-3">
+        <%= form.label :birthdate, :class => 'col-form-label' %>
+      </div>
+      <div class="col-9">
+        <%= form.date_field :date_of_birth, :class => "form-control", :placeholder => "Enter Student's Birthdate"%>
+        <%= render 'error', student: student, field: :date_of_birth %>
+      </div>
+    </div>
+
+    <div class="row g-3 align-items-center m-2">
+      <div class="col-3">
+        <%= form.label :department, :class => 'col-form-label' %>
+      </div>
+      <div class="col-9">
+        <%= form.text_field :department, :class => "form-control", :placeholder => "Enter Student's Department"%>
+        <%= render 'error', student: student, field: :department %>
+      </div>
+    </div>
+
+    <div class="row g-3 align-items-center m-2">
+      <div class="col-auto">
+        <%= form.check_box :term_of_usage, :class => 'form-check-input' %>
+      </div>
+
+      <div class="col-auto">
+        <%= form.label "Term of Usage", :class => 'col-form-label' %>
+        <%= render 'error', student: student, field: :term_of_usage %>
+      </div>
+    </div>
+
+    <%= form.submit :class => 'btn btn-dark m-3' %>
+  <% end %>
+</div>
