@@ -31,7 +31,7 @@ class FacultiesController < ApplicationController
     if @faculty.update(faculty_params)
       redirect_to @faculty
     else
-      render :new, status: :unprocessable_entity
+      render :edit, status: :unprocessable_entity
     end
   end
 

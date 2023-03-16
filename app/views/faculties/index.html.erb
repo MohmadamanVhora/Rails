@@ -8,6 +8,7 @@
         <th scope="col">Phone No.</th>
         <th scope="col">Email</th>
         <th scope="col">Date of Birth</th>
+        <th scope="col">Age</th>
         <th scope="col">Designation</th>
         <th scope="col">Show</th>
         <th scope="col">Edit</th>
@@ -22,6 +23,7 @@
           <td><%= faculty.phone_no %></td>
           <td><%= faculty.email %></td>
           <td><%= faculty.date_of_birth %></td>
+          <td><%= faculty.age %></td>
           <td><%= faculty.designation %></td>
           <td><%= link_to "Show", faculty_path(faculty), :class => "btn btn-info" %></td>
           <td><%= link_to "Edit", edit_faculty_path(faculty), :class => "btn btn-secondary" %></td>
