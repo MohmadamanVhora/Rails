@@ -1,4 +1,19 @@
 <div class="d-flex justify-content-center">
+  <% if faculty.errors.any? %>    
+    <div class="alert alert-danger alert-dismissible fade show w-25" role="alert">            
+      <ul>        
+        <% faculty.errors.each do |error| %>          
+          <li>            
+            <%= error.full_message %>          
+          </li>        
+        <% end %>      
+      </ul>      
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>    
+    </div>  
+  <% end %>
+</div>
+
+<div class="d-flex justify-content-center">
   <%= form_with model: faculty do |form| %>
     <div class="row g-3 align-items-center mx-2">
       <div class="col-3 d-flex ">
@@ -6,7 +21,6 @@
       </div>
       <div class="col-9">
         <%= form.text_field :first_name, :class => "form-control grow-2", :placeholder => "Enter Faculty's First Name"%>
-        <%= render 'error', faculty: faculty, field: :first_name %>
       </div>
     </div>
 
@@ -16,7 +30,6 @@
       </div>
       <div class="col-9">
         <%= form.text_field :last_name, :class => "form-control", :placeholder => "Enter Faculty's Last Name"%>
-        <%= render 'error', faculty: faculty, field: :last_name %>
       </div>
     </div>
 
@@ -26,7 +39,6 @@
       </div>
       <div class="col-9">
         <%= form.text_field :phone_no, :class => "form-control", :placeholder => "Enter Faculty's Phone No."%>
-        <%= render 'error', faculty: faculty, field: :phone_no %>
       </div>
     </div>
 
@@ -36,7 +48,6 @@
       </div>
       <div class="col-9">
         <%= form.text_field :email, :class => "form-control", :placeholder => "Enter Faculty's Email Address"%>
-        <%= render 'error', faculty: faculty, field: :email %>
       </div>
     </div>
 
@@ -46,7 +57,6 @@
       </div>
       <div class="col-9">
         <%= form.date_field :date_of_birth, :class => "form-control", :placeholder => "Enter Faculty's Birthdate"%>
-        <%= render 'error', faculty: faculty, field: :date_of_birth %>
       </div>
     </div>
 
@@ -56,7 +66,6 @@
       </div>
       <div class="col-9">
         <%= form.text_field :designation, :class => "form-control", :placeholder => "Enter Faculty's Designation"%>
-        <%= render 'error', faculty: faculty, field: :designation %>
       </div>
     </div>
 

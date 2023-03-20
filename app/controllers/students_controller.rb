@@ -1,11 +1,10 @@
 class StudentsController < ApplicationController
 
   before_action :find_student, only: [:show, :edit, :update, :destroy]
-  
+ 
   def index
     @students = Student.all
   end
-
 
   def show
   end
@@ -19,6 +18,7 @@ class StudentsController < ApplicationController
   
     if @student.save
       redirect_to @student
+      flash.alert = "Email Validated"
     else
       render :new, status: :unprocessable_entity
     end
@@ -31,19 +31,18 @@ class StudentsController < ApplicationController
     if @student.update(student_params)
       redirect_to @student
     else
-      render :new, status: :unprocessable_entity
+      render :edit, status: :unprocessable_entity
     end
   end
 
   def destroy
-    @student.destroy
-
+    @student.destroy 
     redirect_to students_path, status: :see_other
   end
 
   private
   def student_params
-    params.require(:student).permit(:first_name, :last_name, :date_of_birth, :department, :term_of_usage)
+    params.require(:student).permit(:first_name, :last_name, :email, :date_of_birth, :department, :term_of_usage)
   end
 
   def find_student

@@ -1,5 +1,4 @@
 <div class="container justify-content-center my-5">
-  <h1 class="container text-center text-decoration-underline my-5">Faculty Id - <%= @faculty.id %></h1>
   <table class="table table-bordered container table-hover table-striped">
   
     <tbody>
@@ -27,6 +26,12 @@
         <th scope="row">Date of Birth</th>
         <td><%= @faculty.date_of_birth %></td>
       </tr>
+      
+      <tr>
+        <th scope="row">Age</th>
+        <td><%= @faculty.age %></td>
+      </tr>
+
       <tr>
         <th scope="row">Designation</th>
         <td><%= @faculty.designation %></td>

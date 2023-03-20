@@ -1,4 +1,19 @@
 <div class="d-flex justify-content-center">
+  <% if student.errors.any? %>    
+    <div class="alert alert-danger alert-dismissible fade show w-25" role="alert">            
+      <ul>        
+        <% student.errors.each do |error| %>          
+          <li>            
+            <%= error.full_message %>          
+          </li>        
+        <% end %>      
+      </ul>      
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>    
+    </div>  
+  <% end %>
+</div>
+
+<div class="d-flex justify-content-center">
   <%= form_with model: student do |form| %>
     <div class="row g-3 align-items-center mx-2">
       <div class="col-3 d-flex ">
@@ -6,7 +21,6 @@
       </div>
       <div class="col-9">
         <%= form.text_field :first_name, :class => "form-control grow-2", :placeholder => "Enter Student's First Name"%>
-        <%= render 'error', student: student, field: :first_name %>
       </div>
     </div>
 
@@ -16,7 +30,15 @@
       </div>
       <div class="col-9">
         <%= form.text_field :last_name, :class => "form-control", :placeholder => "Enter Student's Last Name"%>
-        <%= render 'error', student: student, field: :last_name %>
+      </div>
+    </div>
+
+    <div class="row g-3 align-items-center m-2">
+      <div class="col-3">
+        <%= form.label :email, :class => 'col-form-label' %>
+      </div>
+      <div class="col-9">
+        <%= form.text_field :email, :class => "form-control", :placeholder => "Enter Faculty's Email Address"%>
       </div>
     </div>
 
@@ -26,7 +48,6 @@
       </div>
       <div class="col-9">
         <%= form.date_field :date_of_birth, :class => "form-control", :placeholder => "Enter Student's Birthdate"%>
-        <%= render 'error', student: student, field: :date_of_birth %>
       </div>
     </div>
 
@@ -36,7 +57,6 @@
       </div>
       <div class="col-9">
         <%= form.text_field :department, :class => "form-control", :placeholder => "Enter Student's Department"%>
-        <%= render 'error', student: student, field: :department %>
       </div>
     </div>
 
@@ -47,7 +67,6 @@
 
       <div class="col-auto">
         <%= form.label "Term of Usage", :class => 'col-form-label' %>
-        <%= render 'error', student: student, field: :term_of_usage %>
       </div>
     </div>
 
