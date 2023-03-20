@@ -41,8 +41,6 @@ class Faculty < ApplicationRecord
 
   after_update_commit :update_faculty_counter
 
-  before_validation StudentsFacultiesCallbacks
-
 
   def birthdate_validation
     if date_of_birth.nil?

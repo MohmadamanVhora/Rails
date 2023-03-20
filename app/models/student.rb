@@ -31,7 +31,7 @@ class Student < ApplicationRecord
   after_destroy StudentsFacultiesCallbacks, :after_delete_student
   around_destroy StudentsFacultiesCallbacks
 
-  before_validation StudentsFacultiesCallbacks, :set_default_birthdate
+  before_validation :set_default_birthdate
 
   before_save StudentsFacultiesCallbacks
 

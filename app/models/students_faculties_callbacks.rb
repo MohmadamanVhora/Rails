@@ -50,12 +50,8 @@ class StudentsFacultiesCallbacks
     p "after around destroy callback"
   end
 
-  def self.before_validation(record)
-    record.errors.add(:email, "must be in downcase") if record.email.downcase != record.email
-  end
-
   def self.before_save(record)
+    record.email.downcase!
     record.email = "ror_demo" + record.email if !record.email.start_with?('ror_demo')
   end
-
 end
