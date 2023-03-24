@@ -1,0 +1,47 @@
+<div class="container justify-content-center my-5">
+  <% if current_user != nil %> 
+    <div class="w-50 m-auto mb-2 mt-2"> 
+      <%= form_with url: "/search", method: :get, class: "form-inline" do |form| %> 
+        <div class="input-group mb-3"> 
+          <%= form.text_field :company, class: 'form-control mr-sm-2', placeholder: 'Which Car would you like to Search'%> 
+          <%= form.submit "Search", class: 'btn btn-outline-success my-2 my-sm-0' %>
+        </div> 
+      <% end %>
+
+      <table class="table table-bordered table-hover table-striped text-center mt-4">
+        <thead class="table-dark">
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Company</th>
+            <th scope="col">Price</th>
+            <th scope="col">Show</th>
+            <th scope="col">Edit</th>
+            <th scope="col">Delete</th>
+          </tr>
+        </thead>
+        
+        <tbody>
+          <% @cars.each do |car| %>
+            <tr>
+              <td><%= car.name %></td>
+              <td><%= car.company %></td>
+              <td><%= car.price %></td>
+              <td><%= link_to "Show", car_path(car), :class => "btn btn-info py-0" %></td>
+              <td><%= link_to "Edit", edit_car_path(car), :class => "btn btn-warning py-0" %></td>
+              <td><%= link_to "Delete", car_path(car), :class => "btn btn-danger py-0", data: {
+                  turbo_method: :delete,
+                  turbo_confirm: :"Are You Sure?"
+              } %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+      <div class="container text-center mt-4">
+        <a href="/cars/new"><input class="btn btn-dark px-3" type="submit" value="New"></a>
+        <a href="/cars"><input class="btn btn-dark ms-3 px-4" type="submit" value="All"></a>
+        <a href="/download_pdf"><input class="btn btn-dark ms-3 px-4" type="submit" value="Download PDF"></a>
+      </div>
+    </div>
+  <% end %>
+</div>

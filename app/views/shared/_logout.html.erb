@@ -1,0 +1,4 @@
+<% @current_user = User.where(id: session[:user_id]).first %>
+<div>
+  <%= link_to "Logout", user_path(@current_user[:id]), data: { turbo_method: :delete }, class: "btn btn-danger me-5"%>
+</div>

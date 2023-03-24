@@ -1,0 +1,47 @@
+<div class="d-flex justify-content-center">
+  <% if car.errors.any? %>    
+    <div class="alert alert-danger alert-dismissible fade show w-25" role="alert">            
+      <ul>        
+        <% car.errors.each do |error| %>          
+          <li>            
+            <%= error.full_message %>          
+          </li>        
+        <% end %>      
+      </ul>      
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>    
+    </div>  
+  <% end %>
+</div>
+
+<div class="d-flex justify-content-center">
+  <%= form_with model: car do |form| %>
+    <div class="row g-3 align-items-center my-2">
+      <div class="col-3">
+        <%= form.label :name, :class => 'col-form-label grow-1' %>
+      </div>
+      <div class="col-9">
+        <%= form.text_field :name, :class => "form-control grow-2", :placeholder => "Enter Car Name"%>
+      </div>
+    </div>
+
+    <div class="row g-3 align-items-center my-2">
+      <div class="col-3">
+        <%= form.label :company, :class => 'col-form-label grow-1' %>
+      </div>
+      <div class="col-9">
+        <%= form.text_field :company, :class => "form-control grow-2", :placeholder => "Enter Car Company"%>
+      </div>
+    </div>
+
+    <div class="row g-3 align-items-center my-2">
+      <div class="col-3">
+        <%= form.label :price, :class => 'col-form-label grow-1' %>
+      </div>
+      <div class="col-9">
+        <%= form.text_field :price, :class => "form-control grow-2", :placeholder => "Enter Car Price"%>
+      </div>
+    </div>
+
+    <%= form.submit value: text, :class => 'btn btn-dark my-3' %>
+  <% end %>
+</div>
