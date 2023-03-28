@@ -4,15 +4,9 @@ class CarsController < ApplicationController
 
   def index
     @cars = Car.all
-    
-    if current_user == nil
-      flash[:alert] = "Please Login to access your Cars!"
-      render 'shared/login_page'
-    end   
   end
 
-  def show
-  end
+  def show;end
 
   def new
     @car = Car.new
@@ -20,7 +14,6 @@ class CarsController < ApplicationController
 
   def create
     @car = Car.new(car_params)
-  
     if @car.save
       redirect_to @car
     else
@@ -28,8 +21,7 @@ class CarsController < ApplicationController
     end
   end
 
-  def edit
-  end
+  def edit;end
 
   def update
     if @car.update(car_params)
@@ -50,14 +42,12 @@ class CarsController < ApplicationController
   end
 
   def download_pdf
-    user = current_user
-    send_data generate_pdf(user), 
+    send_data generate_pdf(current_user), 
               filename: "#{user.username}.pdf", 
               type: 'application/pdf' 
   end
   
-  private
-  
+  private 
   def car_params
     params.require(:car).permit(:name, :company, :price)
   end
@@ -73,8 +63,7 @@ class CarsController < ApplicationController
     pdf.text "Hello, #{user.username.titleize}", align: :center, size: 20, style: :bold
     Car.all.each do |car| 
       table_data << [car.name, car.company, car.price] 
-    end 
-    
+    end    
     pdf.table(table_data, width: 500, header: true, position: :center)
     pdf.render
   end

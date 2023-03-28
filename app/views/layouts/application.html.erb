@@ -34,8 +34,7 @@
         <a class="navbar-brand" href="/cars">Cars</a>
       </div>
       
-      <% current_user %>
-      <% if current_user != nil %>
+      <% if current_user.present? %>
         <%= render 'shared/logout' %>
       <% else %>
         <%= render 'shared/login' %>

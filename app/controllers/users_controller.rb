@@ -1,29 +1,30 @@
 class UsersController < ApplicationController
+  skip_before_action :require_login, only: [:login, :create]
   def index
     @cars = Car.all
+  end
 
-    if current_user == nil
-      render 'shared/login_page'
-    end
+  def login
+    render :login
   end
 
   def create
-    @user = User.where(username: params[:username]).where(password: params[:password]).first
+    @user = User.find_by(username: params[:username], password: params[:password])
     if @user
       session[:user_id] = @user.id
       cookies[:user_name] = @user.username
       flash[:notice] = "You have Successfully Logged in!"
+      redirect_to users_path
     else
       flash[:alert] = 'Invalid username & password.'
+      redirect_to login_path
     end
-
-    redirect_to users_path
   end
 
   def destroy
     session.clear
     cookies.delete :user_name
-    redirect_to users_path
     flash[:notice] = "You have Successfully Logged out!"
+    redirect_to login_path
   end
 end
