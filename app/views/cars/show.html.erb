@@ -1,0 +1,30 @@
+<div class="container justify-content-center my-5 w-50">
+  <table class="table table-bordered table-hover table-striped">
+  
+    <tbody>
+      <tr>
+        <th scope="row">Name</th>
+        <td><%= @car.name %></td>
+      </tr>
+      
+      <tr>
+        <th scope="row">Company</th>
+        <td><%= @car.company %></td>
+      </tr>
+
+      <tr>
+        <th scope="row">Price</th>
+        <td><%= @car.price %></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="my-4 d-flex justify-content-center">
+    <%= link_to "Edit", edit_car_path(@car), :class => 'btn btn-dark px-4' %>
+    <%= link_to "Delete", car_path(@car), :class => 'btn btn-dark ms-3', data: {
+      turbo_method: :delete,
+      turbo_confirm: :"Are You Sure?"
+    } %>
+    <%= link_to "All", cars_path(@car), :class => 'btn btn-dark ms-3 px-4' %>
+  </div>
+</div>

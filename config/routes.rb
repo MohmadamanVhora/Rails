@@ -5,4 +5,9 @@ Rails.application.routes.draw do
   resources :books
   resources :students
   resources :faculties
+  resources :users
+  resources :cars
+  get '/search', to: 'cars#search'
+  get '/login', to: 'users#login'
+  get '/download_pdf', to: 'cars#download_pdf'
 end
