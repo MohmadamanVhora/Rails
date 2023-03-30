@@ -1,0 +1,27 @@
+<div class="container justify-content-center my-5 col-4">
+  <table class="table table-bordered table-hover table-striped">
+    <tbody>
+      <tr>
+        <th class="col-2">Name</th>
+        <td><%= @event.name %></td>
+      </tr>    
+      <tr>
+        <th class="col-2">Description</th>
+        <td><%= @event.description %></td>
+      </tr>
+      <tr>
+        <th class="col-2">Date</th>
+        <td><%= @event.event_date %></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="my-4 d-flex justify-content-center">
+    <%= link_to "Edit", edit_event_path(@event), :class => 'btn btn-dark px-4' %>
+    <%= link_to "Delete", event_path(@event), :class => 'btn btn-dark ms-3', data: {
+      turbo_method: :delete,
+      turbo_confirm: :"Are You Sure?"
+    } %>
+    <%= link_to "All", events_path(@event), :class => 'btn btn-dark ms-3 px-4' %>
+  </div>
+</div>
