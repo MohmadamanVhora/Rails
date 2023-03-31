@@ -1,0 +1,32 @@
+<div class="d-flex justify-content-center">
+  <% if @address.errors.any? %>    
+    <div class="alert alert-danger alert-dismissible fade show w-25" role="alert">            
+      <ul>        
+        <% @address.errors.each do |error| %>          
+          <li>            
+            <%= error.full_message %>          
+          </li>        
+        <% end %>      
+      </ul>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>    
+    </div>  
+  <% end %>
+</div>
+<h3 class="text-center mt-5">You can Edit Your Address</h3>
+<div class="d-flex justify-content-center text-center mt-5">
+  <%= form_with model: @address do |form| %>
+    <div class="input-group mb-4">
+      <label class="input-group-text">Address</label> 
+      <%= form.text_field :address_line, :class => "form-control grow-2", :placeholder => "Enter Address"%>
+    </div>
+    <div class="input-group mb-4">
+      <label class="input-group-text">City</label> 
+      <%= form.text_field :city, :class => "form-control grow-2", :placeholder => "Enter Address"%>
+    </div>
+    <div class="input-group mb-4">
+      <label class="input-group-text">State</label>
+      <%= form.text_field :state, :class => "form-control grow-2", :placeholder => "Enter Address"%>
+    </div>
+    <%= form.submit "Update", :class => 'btn btn-dark px-3' %>
+  <% end %>
+</div>

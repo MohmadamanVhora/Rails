@@ -13,4 +13,10 @@ class EnrollmentsController < ApplicationController
       render :index, status: :unprocessable_entity
     end
   end
+
+  def discard
+    @enrolled_event = Enrollment.find_by(user_id: @current_user[:id], event_id: params[:eventid], created: false)
+    @enrolled_event.destroy
+    redirect_to profiles_path
+  end
 end

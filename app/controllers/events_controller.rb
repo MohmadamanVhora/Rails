@@ -36,9 +36,14 @@ class EventsController < ApplicationController
     redirect_to events_path, status: :see_other
   end
 
+  def search
+    @events = Event.where(id: Enrollment.where(user_id: @current_user[:id], created: true).pluck(:event_id)).order(id: :desc).where(category_id: params[:category_id])
+    render :index
+  end
+  
   private
   def event_params
-    params.require(:event).permit(:name, :description, :event_date)
+    params.require(:event).permit(:name, :description, :event_date, :category_id)
   end
 
   def find_event

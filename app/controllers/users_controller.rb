@@ -14,7 +14,7 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       cookies[:user_name] = @user.username
       flash[:notice] = "You have Successfully Logged in!"
-      redirect_to users_path
+      redirect_to events_path
     else
       flash[:alert] = 'Invalid username & password.'
       redirect_to login_path

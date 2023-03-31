@@ -1,0 +1,50 @@
+<div class="container justify-content-center text-center my-5">
+  <h3 class="text-primary text-center">Profile</h3>
+  <div class="w-50 m-auto"> 
+    <table class="table table-bordered table-hover table-striped text-center mt-4">
+      <thead class="table-dark">
+        <tr>
+          <th scope="col">Username</th>
+          <th scope="col">Address</th>
+        </tr>
+      </thead>
+      
+      <tbody>
+        <tr>
+          <td><%= @current_user.username %></td>
+          <td><%= @address.address_line %>, <%= @address.city %>, <%= @address.state %></td>
+        </tr>
+      </tbody>
+    </table>
+    <td><%= link_to "Edit Address", edit_address_path(@address.id), :class => "btn btn-warning" %></td>
+    <hr>
+  </div>
+  <h3 class="text-success text-center mt-5">You have Enrolled Following Events</h3>
+  <div class="w-50 m-auto"> 
+    <table class="table table-bordered table-hover table-striped text-center mt-4">
+      <thead class="table-dark">
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Category</th>
+          <th scope="col">Description</th>
+          <th scope="col">date</th>
+          <th scope="col">Enroll</th>
+        </tr>
+      </thead>
+      
+      <tbody>
+        <% @events.reverse_each do |event| %>
+          <% if @enrolled_events.include?(event.id) %>
+            <tr>
+              <td><%= event.name %></td>
+              <td><%= event.category.name %></td>
+              <td><%= event.description %></td>
+              <td><%= event.event_date %></td>
+              <td><%= link_to "Discard", discard_enrollment_path(event), :class => "btn btn-danger py-0" %></td>
+            </tr>
+          <% end %>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
