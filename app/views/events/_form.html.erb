@@ -22,7 +22,7 @@
 
     <div class="input-group mb-4">
       <label class="input-group-text">Category</label> 
-      <%= form.select :category_id, Category.pluck(:name, :id), :class => "form-control", :placeholder => "Enter Category"%>
+      <%= form.select :category_id, Category.pluck(:name, :id), { include_blank: "Select Category" }, :class => "form-control" %>
     </div>
 
     <div class="input-group mb-4">

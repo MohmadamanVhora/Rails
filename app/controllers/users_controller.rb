@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   skip_before_action :require_login, only: [:login, :create]
   def index
-    @cars = Car.all
+    @events = Event.all.order(id: :desc)
   end
 
   def login
@@ -14,7 +14,7 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       cookies[:user_name] = @user.username
       flash[:notice] = "You have Successfully Logged in!"
-      redirect_to events_path
+      redirect_to users_path
     else
       flash[:alert] = 'Invalid username & password.'
       redirect_to login_path

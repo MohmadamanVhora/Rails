@@ -28,6 +28,7 @@
           <th scope="col">Category</th>
           <th scope="col">Description</th>
           <th scope="col">date</th>
+          <th scope="col">Show</th>
           <th scope="col">Enroll</th>
         </tr>
       </thead>
@@ -40,6 +41,7 @@
               <td><%= event.category.name %></td>
               <td><%= event.description %></td>
               <td><%= event.event_date %></td>
+              <td><%= link_to "Show", event_path(event), :class => "btn btn-info py-0" %></td>
               <td><%= link_to "Discard", discard_enrollment_path(event), :class => "btn btn-danger py-0" %></td>
             </tr>
           <% end %>

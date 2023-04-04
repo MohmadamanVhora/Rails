@@ -1,11 +1,15 @@
 class EventsController < ApplicationController
   before_action :find_event, only: [:show, :edit, :update, :destroy]
+  before_action :check_user, only: [:edit, :destroy]
 
   def index
     @events = Event.where(id: Enrollment.where(user_id: @current_user[:id], created: true).pluck(:event_id)).order(id: :desc)
   end
 
-  def show; end
+  def show
+    @comments = Comment.where(event_id: @event.id)
+    @likes = Like.all
+  end
 
   def new
     @event = Event.new
@@ -37,8 +41,13 @@ class EventsController < ApplicationController
   end
 
   def search
-    @events = Event.where(id: Enrollment.where(user_id: @current_user[:id], created: true).pluck(:event_id)).order(id: :desc).where(category_id: params[:category_id])
-    render :index
+    if params[:category_id].present?
+      @events = Event.where(id: Enrollment.where(user_id: @current_user[:id], created: true).pluck(:event_id)).order(id: :desc).where(category_id: params[:category_id])
+      render :index
+    else
+      @events = Event.where(id: Enrollment.where(user_id: @current_user[:id], created: true).pluck(:event_id)).order(id: :desc)
+      render :index
+    end
   end
   
   private
@@ -48,5 +57,12 @@ class EventsController < ApplicationController
 
   def find_event
     @event = Event.find_by(id: Enrollment.where(user_id: @current_user[:id], event_id: params[:id]).pluck(:event_id))
+  end
+
+  def check_user
+    if Enrollment.find_by(event_id: @event.id, created: true).user_id != @current_user.id
+      flash[:alert] = "You can not edit this event"
+      redirect_to @event
+    end
   end
 end

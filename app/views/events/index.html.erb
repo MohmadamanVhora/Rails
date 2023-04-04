@@ -3,7 +3,7 @@
   <div class="w-75 m-auto mb-2 mt-2"> 
     <%= form_with url: "/events/categories/search", method: :get, class: "form-inline" do |form| %> 
       <div class="input-group mb-3"> 
-        <%= form.select :category_id, Category.pluck(:name, :id), :class => "form-control", :placeholder => "Enter Category"%> 
+        <%= form.select :category_id, Category.pluck(:name, :id), { include_blank: "All" }, :class => "form-control"%> 
         <%= form.submit "Search", class: 'btn btn-outline-success my-2 my-sm-0' %>
       </div> 
     <% end %>

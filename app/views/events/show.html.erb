@@ -1,4 +1,5 @@
 <div class="container justify-content-center my-5 col-4">
+  <label class="fs-3"><strong>Event:</strong></label>
   <table class="table table-bordered table-hover table-striped">
     <tbody>
       <tr>
@@ -19,12 +20,50 @@
       </tr>
     </tbody>
   </table>
+
   <div class="my-4 d-flex justify-content-center">
-    <%= link_to "Edit", edit_event_path(@event), :class => 'btn btn-dark px-4' %>
-    <%= link_to "Delete", event_path(@event), :class => 'btn btn-dark ms-3', data: {
-      turbo_method: :delete,
-      turbo_confirm: :"Are You Sure?"
-    } %>
-    <%= link_to "All", events_path(@event), :class => 'btn btn-dark ms-3 px-4' %>
+    <% if Enrollment.find_by(event_id: @event.id, created: true).user_id == @current_user.id %>
+      <%= link_to "Edit", edit_event_path(@event), :class => 'btn btn-warning px-4' %>
+      <%= link_to "Delete", event_path(@event), :class => 'btn btn-danger ms-3', data: {
+        turbo_method: :delete,
+        turbo_confirm: :"Are You Sure?"
+      } %>
+      <%= link_to "All", events_path, :class => 'btn btn-info ms-3 px-4' %>
+    <% else %>   
+      <%= link_to "All", events_path, :class => 'btn btn-info ms-3 px-4' %>
+    <% end %>
+  </div>
+</div>
+
+<div class="container justify-content-center my-5 col-4">
+  <label class="fs-3"><strong>Comments:</strong></label>
+  <div class="border px-3 py-2">
+    <% @comments.each do |comment| %>
+      <div class="d-flex justify-content-between">
+        <div class="mb-2">
+          <p class="mb-1"><strong>Username: </strong><%= comment.user.username %></p>
+          <p class="mb-1"><strong>Comment: </strong><%= comment.comment %></p>
+          <p class="mb-1"><strong>Likes: </strong><%= comment.likes.count %></p>
+        </div>
+
+        <div class="mb-2 mt-4">
+          <% if comment.likes.pluck("user_id").include?(@current_user.id)%> 
+            <%= link_to 'Unlike', dislike_path(comment), class: "text-decoration-none text-dark btn btn-info me-2" %>
+          <% else %> 
+            <%= link_to 'Like', like_path(comment), class: "text-decoration-none text-dark btn btn-info me-2" %>
+          <% end %>
+
+          <% if comment.user.id == @current_user.id %>  
+            <%= link_to "Edit", edit_comment_path(comment), :class => "btn btn-warning me-2" %>
+            <%= link_to "Delete", comment_path(comment), :class => "btn btn-danger", data: { turbo_method: :delete, turbo_confirm: :"Are You Sure?" } %>
+          <% end %> 
+        </div>
+      </div>
+      <hr class="m-0">
+    <% end %>
+  </div>
+
+  <div class="text-center">
+    <%= link_to "Add Comment", create_comment_path(@event.id), :class => "btn btn-info mt-4" %>
   </div>
 </div>

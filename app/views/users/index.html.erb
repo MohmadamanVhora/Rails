@@ -1,21 +1,24 @@
-<div class="w-25 container text-center my-5">
+<div class="w-50 container text-center my-5">
 <h3>Welcome, <%= cookies[:user_name].titleize %>.</h3>
-  <table class="table table-bordered table-hover table-striped my-3">
-    <thead class="table-dark">
-      <tr>
-        <th scope="col">Name</th>
-        <th scope="col">Company</th>
-        <th scope="col">Price</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @cars.each do |car| %>
+  <table class="table table-bordered table-hover table-striped text-center mt-4">
+      <thead class="table-dark">
         <tr>
-          <td><%= car.name %></td>
-          <td><%= car.company %></td>
-          <td><%= car.price %></td>
+          <th scope="col">Name</th>
+          <th scope="col">Category</th>
+          <th scope="col">Description</th>
+          <th scope="col">Date</th>
         </tr>
-      <% end %>
-    </tbody>
+      </thead> 
+      <tbody>
+        <% @events.each do |event| %>
+          <tr>
+            <td><%= event.name %></td>
+            <td><%= event.category.name %></td>
+            <td><%= event.description %></td>
+            <td><%= event.event_date %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
   </table>
 </div>

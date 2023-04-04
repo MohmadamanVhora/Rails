@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'events#index'
+  root 'users#index'
   resources :home
   resources :products
   resources :authors
@@ -19,4 +19,7 @@ Rails.application.routes.draw do
   get '/enrollments/create/:eventid', to: 'enrollments#create', as: "create_enrollment"
   get '/enrollments/discard/:eventid', to: 'enrollments#discard', as: "discard_enrollment"
   get '/profiles', to: 'profiles#index'
+  get '/comments/new/:eventid', to: 'comments#new', as: "create_comment"
+  get '/likes/create/:commentid', to: 'likes#create', as: "like"
+  get '/likes/destroy/:commentid', to: 'likes#destroy', as: "dislike"
 end
