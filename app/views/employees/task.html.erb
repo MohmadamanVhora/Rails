@@ -1,0 +1,60 @@
+<div class="container justify-content-center mt-5 text-center">
+  <div class="mx-auto mb-2 mt-2 w-75"> 
+    <%= form_with url: tasks_path, method: :get, class: "form-inline" do |form| %>
+      <div class="input-group mb-3"> 
+        <%= form.select :task, @options, { include_blank: "All" }, :class => "form-select"%> 
+        <%= form.submit "Search", class: 'btn btn-outline-success my-2 my-sm-0' %>
+      </div> 
+    <% end %>
+    <% if defined?(@name_of_employee) %>
+      <div>
+        <table class="table table-bordered container table-hover table-striped">
+          <thead class="table-dark">
+            <tr>
+              <th>No of Orders</th>
+              <th>Employees</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @name_of_employee.each do |employees| %>
+              <tr>
+                <td><%= employees[0] %></td>
+                <td><%= employees[1] %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    <% else %>
+      <div class="my-4" style="height:600px; overflow:auto;">
+        <table class="table table-bordered container table-hover table-striped w-100">
+          <thead class="table-dark">
+            <tr>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Email</th>
+              <th>Age</th>
+              <th>No of Orders</th>
+              <th>Full Time Available</th>
+              <th>Salary</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @employees.each do |employee| %>
+              <tr>
+                <td><%= employee.first_name %></td>
+                <td><%= employee.last_name %></td>
+                <td><%= employee.email %></td>
+                <td><%= employee.age %></td>
+                <td><%= employee.no_of_order %></td>
+                <td><%= employee.full_time_available ? 'Yes' : 'No' %></td>
+                <td><%= employee.salary %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    <% end %>
+  </div>
+  <%= link_to raw('<i class="fa-solid fa-list fa-2xl" style="color: #12e4f3;></i>'), employees_path, :class => 'btn mt-3', title: "All" %>
+</div>

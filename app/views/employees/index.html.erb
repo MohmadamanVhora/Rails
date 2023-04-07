@@ -1,0 +1,60 @@
+<div class="container justify-content-center mt-5 text-center">
+  <div class="mx-auto mb-2 mt-2"> 
+    <%= form_with url: search_employee_email_path, method: :get, class: "form-inline" do |form| %>
+      <div class="input-group mb-3"> 
+        <%= form.text_field :email, class: 'form-control mr-sm-2', placeholder: 'Check Email Exists or Not'%> 
+        <%= form.submit "Search", class: 'btn btn-outline-success my-2 my-sm-0' %>
+      </div> 
+    <% end %>
+    <div style="height:600px; overflow:auto;">
+      <table class="table table-bordered container table-hover table-striped">
+        <thead class="table-dark">
+          <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Age</th>
+            <th>No of Orders</th>
+            <th>Full Time Available</th>
+            <th>Salary</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @employees.each do |employee| %>
+            <tr>
+              <td><%= employee.first_name %></td>
+              <td><%= employee.last_name %></td>
+              <td><%= employee.email %></td>
+              <td><%= employee.age %></td>
+              <td> 
+                <div class="row"> 
+                  <div class="col-5 px-0">
+                    <%= link_to raw('<i class="fa-solid fa-circle-minus fa-xl"></i>'), change_order_path("decrement", employee.id), :class => "btn float-right", title: "Decrease" %>
+                  </div> 
+                  <div class="col-2 m-auto"> 
+                    <%= employee.no_of_order %>
+                    </div>
+                  <div class="col-5 px-0">
+                    <%= link_to raw('<i class="fa-solid fa-circle-plus fa-xl"></i>'), change_order_path("increment", employee.id), :class => "btn float-left", title: "Increase" %>
+                  </div>
+                </div>
+              </td>
+              <td><%= employee.full_time_available ? 'Yes':'No' %></td>
+              <td><%= employee.salary %></td>
+              <td><%= link_to raw('<i class="fa-solid fa-eye fa-lg" style="color: #12e4f3;"></i>'), employee_path(employee), :class => "btn m-0", title: "Show" %>
+              <%= link_to raw('<i class="fa-solid fa-pen-to-square fa-lg" style="color: #f4e32a;"></i>'), edit_employee_path(employee), :class => "btn", title: "Edit" %>
+              <%= link_to raw('<i class="fa-solid fa-trash-can fa-lg" style="color: #f02828;"></i>'), employee_path(employee), :class => "btn", title: "Remove", data: { turbo_method: :delete, turbo_confirm: :"Are You Sure?" } %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <div class="mt-4">
+      <%= link_to "Add", new_employee_path, :class => "btn btn-info ms-3" %>
+      <%= link_to "First 10", first_ten_employees_path, :class => "btn btn-info ms-3" %>
+      <%= link_to "Tasks", tasks_path, :class => "btn btn-info ms-3" %>
+      <%= link_to "All", employees_path, :class => "btn btn-info ms-3" %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,40 @@
+<div class="container justify-content-center my-5 col-6">
+  <table class="table table-bordered table-hover table-striped">
+    <tbody>
+      <tr>
+        <th class="col-3">First Name</th>
+        <td><%= @employee.first_name %></td>
+      </tr>
+      <tr>
+        <th class="col-3">Last Name</th>
+        <td><%= @employee.last_name %></td>
+      </tr>    
+      <tr>
+        <th class="col-3">Email</th>
+        <td><%= @employee.email %></td>
+      </tr>
+      <tr>
+        <th class="col-3">Age</th>
+        <td><%= @employee.age %></td>
+      </tr>
+      <tr>
+        <th class="col-3">No of Orders</th>
+        <td><%= @employee.no_of_order %></td>
+      </tr>
+      <tr>
+        <th class="col-3">Full Time Available	</th>
+        <td><%= @employee.full_time_available ? 'Yes':'No' %></td>
+      </tr>
+      <tr>
+        <th class="col-3">Salary</th>
+        <td><%= @employee.salary %></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="my-4">
+    <%= link_to raw('<i class="fa-solid fa-pen-to-square fa-2xl" style="color: #f4e32a;"></i>'), edit_employee_path(@employee), :class => "btn", title: "Edit" %>
+    <%= link_to raw('<i class="fa-solid fa-trash-can fa-2xl" style="color: #f02828;"></i>'), employee_path(@employee), :class => "btn", title: "Remove", data: { turbo_method: :delete, turbo_confirm: :"Are You Sure?" } %>
+    <%= link_to raw('<i class="fa-solid fa-list fa-2xl" style="color: #12e4f3;></i>'), employees_path, :class => 'btn', title: "All" %>
+  </div>
+</div>

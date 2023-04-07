@@ -1,0 +1,54 @@
+<div class="d-flex justify-content-center">
+  <% if employee.errors.any? %>    
+    <div class="alert alert-danger alert-dismissible fade show w-25" role="alert">            
+      <ul>        
+        <% employee.errors.each do |error| %>          
+          <li>            
+            <%= error.full_message %>          
+          </li>        
+        <% end %>      
+      </ul>      
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>    
+    </div>  
+  <% end %>
+</div>
+<div class="container justify-content-center text-center col-4">
+  <%= form_with model: employee do |form| %>
+    <div class="input-group mb-4">
+      <label class="input-group-text">First Name</label> 
+      <%= form.text_field :first_name, :class => "form-control", :placeholder => "Enter First Name"%>
+    </div>
+
+    <div class="input-group mb-4">
+      <label class="input-group-text">Last Name</label> 
+      <%= form.text_field :last_name, :class => "form-control", :placeholder => "Enter Last Name"%>
+    </div>
+
+    <div class="input-group mb-4">
+      <label class="input-group-text">Email</label> 
+      <%= form.text_field :email, :class => "form-control", :placeholder => "Enter Email Address"%>
+    </div>
+
+    <div class="input-group mb-4">
+      <label class="input-group-text">Age</label> 
+      <%= form.number_field :age, min: 0, :class => "form-control", :placeholder => "Enter Age"%>
+    </div>
+
+    <div class="input-group mb-4">
+      <label class="input-group-text">No of Orders</label> 
+      <%= form.number_field :no_of_order, min: 0, :class => "form-control", :placeholder => "Enter No of Orders"%>
+    </div>
+
+    <div class="input-group mb-4">
+      <label class="input-group-text">Full Time Available</label> 
+      <%= form.select :full_time_available,[['Yes', true], ['No', false]], { include_blank: false }, :class => "form-control" %>
+    </div>
+
+    <div class="input-group mb-4">
+      <label class="input-group-text">Salary</label> 
+      <%= form.number_field :salary, min: 30000, :class => "form-control", :placeholder => "Enter Salary"%>
+    </div>
+
+    <%= form.submit value: text, :class => 'btn btn-info px-3' %>
+  <% end %>
+</div>
