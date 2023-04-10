@@ -5,7 +5,7 @@ class EnrollmentsController < ApplicationController
   end
 
   def create
-    @enrollment = Enrollment.new(user_id: @current_user[:id], event_id: params[:eventid], created: false)
+    @enrollment = @current_user.enrollments.new(event_id: params[:eventid], created: false)
     if @enrollment.save
       flash[:notice] = "You have Enrolled Event Successfully"
       redirect_to enrollments_path
@@ -15,7 +15,7 @@ class EnrollmentsController < ApplicationController
   end
 
   def discard
-    enrolled_event = Enrollment.find_by(user_id: @current_user[:id], event_id: params[:eventid], created: false)
+    enrolled_event =  @current_user.enrollments.find_by(event_id: params[:eventid])
     enrolled_event.destroy
     redirect_to profiles_path
   end
