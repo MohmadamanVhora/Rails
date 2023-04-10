@@ -1,6 +1,5 @@
 class EnrollmentsController < ApplicationController
   def index
-    # events_ids = Enrollment.where(user_id: @current_user[:id]).pluck(:event_id).uniq
     events_ids = @current_user.enrollments.pluck(:event_id).uniq
     @events = Event.where.not(id: events_ids)
   end

@@ -5,7 +5,6 @@ class EventsController < ApplicationController
   def index
     events_ids = @current_user.enrollments.where(created: true).pluck(:event_id).uniq
     @events = Event.where(id: events_ids).order(id: :desc)
-    # @events = @current_user.events.where(id: Enrollment.where(created: true, user_id: @current_user.id).pluck(:event_id))
   end
 
   def show
