@@ -1,0 +1,17 @@
+<section>
+  <div class="container my-5 py-5 text-dark w-25">
+    <div class="row d-flex w-100">
+      <div class="card p-4">
+        <%= form_with model: @comment do |form| %>
+          <h5>Add a comment:</h5>
+          <div class="form-outline">
+            <%= form.text_area :comment, class: "form-control", rows: "4", columns: "6", placeholder: "Enter Comment"%>
+            <%= form.hidden_field :event_id, value: @event[:id] %>
+            <%= form.hidden_field :user_id, value: @current_user.id %>
+            <%= form.submit "Add", :class => 'btn btn-info px-4 mt-3' %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</section>

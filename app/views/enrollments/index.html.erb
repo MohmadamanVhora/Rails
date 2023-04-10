@@ -1,14 +1,17 @@
-<div class="w-50 container text-center my-5">
-<h3>Welcome, <%= cookies[:user_name].titleize %>.</h3>
-  <table class="table table-bordered table-hover table-striped text-center mt-4">
+<div class="container justify-content-center my-5">
+  <h3 class="text-success text-center">Available Events to Join</h3>
+  <div class="w-50 m-auto"> 
+    <table class="table table-bordered table-hover table-striped text-center mt-4">
       <thead class="table-dark">
         <tr>
           <th scope="col">Name</th>
           <th scope="col">Category</th>
           <th scope="col">Description</th>
-          <th scope="col">Date</th>
+          <th scope="col">date</th>
+          <th scope="col">Enroll</th>
         </tr>
-      </thead> 
+      </thead>
+      
       <tbody>
         <% @events.each do |event| %>
           <tr>
@@ -16,9 +19,10 @@
             <td><%= event.category.name %></td>
             <td><%= event.description %></td>
             <td><%= event.event_date %></td>
+            <td><%= link_to "Enroll", create_enrollment_path(event), :class => "btn btn-info py-0" %></td>
           </tr>
         <% end %>
       </tbody>
     </table>
-  </table>
+  </div>
 </div>

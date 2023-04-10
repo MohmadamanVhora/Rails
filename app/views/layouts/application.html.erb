@@ -24,15 +24,18 @@
   <body>
     <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
       <div class="container-fluid justify-content-start">
-        <a class="navbar-brand" href="/">Home</a>        
+        <a class="navbar-brand" href="/home">Home</a>        
         <a class="navbar-brand" href="/products">Products</a>
         <a class="navbar-brand" href="/authors">Authors</a>       
         <a class="navbar-brand" href="/books">Books</a>      
         <a class="navbar-brand" href="/students">Students</a> 
         <a class="navbar-brand" href="/faculties">Faculties</a>
-        <a class="navbar-brand" href="/users">Users</a>
+        <a class="navbar-brand" href="/">Users</a>
         <a class="navbar-brand" href="/cars">Cars</a>
+        <a class="navbar-brand" href="/events">Events</a>
+        <a class="navbar-brand" href="/enrollments">Enrollments</a>
       </div>
+      <a class="navbar-brand me-5 text-info" href="/profiles">Profile</a>
       
       <% if current_user.present? %>
         <%= render 'shared/logout' %>

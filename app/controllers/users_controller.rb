@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   skip_before_action :require_login, only: [:login, :create]
   def index
-    @cars = Car.all
+    @events = Event.all.order(id: :desc)
   end
 
   def login

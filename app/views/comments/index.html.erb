@@ -1,0 +1,29 @@
+<div class="container justify-content-center my-5">
+  <table class="table container table-hover table-striped m-5">
+    <thead class="table-dark">
+          <tr>
+            <th scope="col">User</th>
+            <th scope="col">Comment</th>
+            <th scope="col">Show</th>
+            <th scope="col">Edit</th>
+            <th scope="col">Delete</th>
+          </tr>
+        </thead>
+        
+        <tbody>
+          <% @comments.each do |comment| %>
+            <tr>
+              <td><%= comment.user.username %></td>
+              <td><%= comment.comment %></td>
+              <td><%= link_to "Show", comment_path(comment), :class => "btn btn-info py-0" %></td>
+              <td><%= link_to "Edit", edit_comment_path(comment), :class => "btn btn-warning py-0" %></td>
+              <td><%= link_to "Delete", comment_path(comment), :class => "btn btn-danger py-0", data: {
+                  turbo_method: :delete,
+                  turbo_confirm: :"Are You Sure?"
+              } %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+  </table>
+</div>
