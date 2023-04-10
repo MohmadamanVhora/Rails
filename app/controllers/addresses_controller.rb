@@ -1,5 +1,6 @@
 class AddressesController < ApplicationController
   before_action :find_address
+  
   def edit; end
 
   def update

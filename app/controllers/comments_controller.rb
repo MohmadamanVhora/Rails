@@ -41,7 +41,7 @@ class CommentsController < ApplicationController
   end
 
   def check_user
-    if @comment.user.id != @current_user.id
+    if @comment.user != @current_user
       flash[:alert] = "You can not edit this comment"
       redirect_to event_path(@comment.event_id)
     end

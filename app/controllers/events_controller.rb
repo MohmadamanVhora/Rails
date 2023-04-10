@@ -3,12 +3,13 @@ class EventsController < ApplicationController
   before_action :check_user, only: [:edit, :destroy]
 
   def index
-    @events = Event.where(id: Enrollment.where(user_id: @current_user[:id], created: true).pluck(:event_id)).order(id: :desc)
+    events_ids = @current_user.enrollments.where(created: true).pluck(:event_id).uniq
+    @events = Event.where(id: events_ids).order(id: :desc)
+    # @events = @current_user.events.where(id: Enrollment.where(created: true, user_id: @current_user.id).pluck(:event_id))
   end
 
   def show
-    @comments = Comment.where(event_id: @event.id)
-    @likes = Like.all
+    @comments = @event.comments
   end
 
   def new
@@ -18,7 +19,7 @@ class EventsController < ApplicationController
   def create
     @event = Event.new(event_params)
     if @event.save
-      Enrollment.create(event_id: @event.id, user_id: @current_user[:id], created: true)
+      @event.enrollments.create(user_id: @current_user.id, created: true)
       redirect_to @event
     else
       render :new, status: :unprocessable_entity
@@ -42,10 +43,12 @@ class EventsController < ApplicationController
 
   def search
     if params[:category_id].present?
-      @events = Event.where(id: Enrollment.where(user_id: @current_user[:id], created: true).pluck(:event_id)).order(id: :desc).where(category_id: params[:category_id])
+      events_ids = @current_user.enrollments.where(created: true).pluck(:event_id)
+      @events = Event.where(id: events_ids, category_id: params[:category_id]).order(id: :desc)
       render :index
     else
-      @events = Event.where(id: Enrollment.where(user_id: @current_user[:id], created: true).pluck(:event_id)).order(id: :desc)
+      events_ids = @current_user.enrollments.where(created: true).pluck(:event_id)
+      @events = Event.where(id: events_ids).order(id: :desc)
       render :index
     end
   end
@@ -60,7 +63,7 @@ class EventsController < ApplicationController
   end
 
   def check_user
-    if Enrollment.find_by(event_id: @event.id, created: true).user_id != @current_user.id
+    if @event.enrollments.find_by(created: true).user != @current_user
       flash[:alert] = "You can not edit this event"
       redirect_to @event
     end

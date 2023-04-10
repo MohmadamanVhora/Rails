@@ -22,7 +22,7 @@
   </table>
 
   <div class="my-4 d-flex justify-content-center">
-    <% if Enrollment.find_by(event_id: @event.id, created: true).user_id == @current_user.id %>
+    <% if @event.enrollments.find_by(created: true).user == @current_user %>
       <%= link_to "Edit", edit_event_path(@event), :class => 'btn btn-warning px-4' %>
       <%= link_to "Delete", event_path(@event), :class => 'btn btn-danger ms-3', data: {
         turbo_method: :delete,
@@ -47,13 +47,13 @@
         </div>
 
         <div class="mb-2 mt-4">
-          <% if comment.likes.pluck("user_id").include?(@current_user.id)%> 
+          <% if comment.likes.where(user_id: @current_user.id).present?%> 
             <%= link_to 'Unlike', dislike_path(comment), class: "text-decoration-none text-dark btn btn-info me-2" %>
           <% else %> 
             <%= link_to 'Like', like_path(comment), class: "text-decoration-none text-dark btn btn-info me-2" %>
           <% end %>
 
-          <% if comment.user.id == @current_user.id %>  
+          <% if comment.user == @current_user %>  
             <%= link_to "Edit", edit_comment_path(comment), :class => "btn btn-warning me-2" %>
             <%= link_to "Delete", comment_path(comment), :class => "btn btn-danger", data: { turbo_method: :delete, turbo_confirm: :"Are You Sure?" } %>
           <% end %> 

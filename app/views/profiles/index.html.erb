@@ -34,17 +34,15 @@
       </thead>
       
       <tbody>
-        <% @events.reverse_each do |event| %>
-          <% if @enrolled_events.include?(event.id) %>
-            <tr>
-              <td><%= event.name %></td>
-              <td><%= event.category.name %></td>
-              <td><%= event.description %></td>
-              <td><%= event.event_date %></td>
-              <td><%= link_to "Show", event_path(event), :class => "btn btn-info py-0" %></td>
-              <td><%= link_to "Discard", discard_enrollment_path(event), :class => "btn btn-danger py-0" %></td>
-            </tr>
-          <% end %>
+        <% @events.each do |event| %>
+          <tr>
+            <td><%= event.name %></td>
+            <td><%= event.category.name %></td>
+            <td><%= event.description %></td>
+            <td><%= event.event_date %></td>
+            <td><%= link_to "Show", event_path(event), :class => "btn btn-info py-0" %></td>
+            <td><%= link_to "Discard", discard_enrollment_path(event), :class => "btn btn-danger py-0" %></td>
+          </tr>
         <% end %>
       </tbody>
     </table>

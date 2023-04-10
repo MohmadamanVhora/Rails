@@ -39,8 +39,8 @@
     </table>
 
     <div class="container text-center mt-4">
-      <a href="/events/new"><input class="btn btn-dark px-3" type="submit" value="New"></a>
-      <a href="/events"><input class="btn btn-dark ms-3 px-4" type="submit" value="All"></a>
+      <%= link_to "New", new_event_path, :class => "btn btn-dark px-3" %>
+      <%= link_to "All", events_path, :class => "btn btn-dark ms-3 px-4" %>
     </div>
   </div>
 </div>

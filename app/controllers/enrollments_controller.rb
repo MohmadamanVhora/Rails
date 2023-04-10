@@ -1,7 +1,8 @@
 class EnrollmentsController < ApplicationController
   def index
-    @events = Event.where(id: Enrollment.where(created: true).where.not(user_id: @current_user[:id]).pluck(:event_id))
-    @enrolled_events = Enrollment.where(user_id: @current_user[:id], created: false).pluck(:event_id)
+    # events_ids = Enrollment.where(user_id: @current_user[:id]).pluck(:event_id).uniq
+    events_ids = @current_user.enrollments.pluck(:event_id).uniq
+    @events = Event.where.not(id: events_ids)
   end
 
   def create
@@ -15,8 +16,8 @@ class EnrollmentsController < ApplicationController
   end
 
   def discard
-    @enrolled_event = Enrollment.find_by(user_id: @current_user[:id], event_id: params[:eventid], created: false)
-    @enrolled_event.destroy
+    enrolled_event = Enrollment.find_by(user_id: @current_user[:id], event_id: params[:eventid], created: false)
+    enrolled_event.destroy
     redirect_to profiles_path
   end
 end
