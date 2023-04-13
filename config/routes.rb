@@ -15,6 +15,12 @@ Rails.application.routes.draw do
   get '/employees/change_order/:order/:id', to: 'employees#change_order', as: "change_order"
   get '/employees/first_10_employees', to: 'employees#first_ten_employees', as: "first_ten_employees"
   get '/employees/tasks', to: 'employees#task', as: "tasks"
+  get '/products/active_products', to: 'products#active_products', as: "active_products"
+  get '/orders/new/:product_id', to: 'orders#new', as: "new_order"
+  get '/orders/filter', to: 'orders#filter', as: "filter_orders"
+  get '/orders/search', to: 'orders#search', as: "search_orders"
+  get '/customers/task/:task_id', to: 'customers#task', as: "task"
+
   resources :home
   resources :products
   resources :authors
@@ -27,4 +33,6 @@ Rails.application.routes.draw do
   resources :addresses
   resources :comments
   resources :employees
+  resources :customers
+  resources :orders, except: [:new]
 end
