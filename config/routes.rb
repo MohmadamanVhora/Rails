@@ -23,7 +23,7 @@ Rails.application.routes.draw do
   resources :home
   
   resources :products do
-    resources :orders, only: [:new]
+    resources :orders, only: [:new, :create]
   end
   
   resources :authors
@@ -36,7 +36,7 @@ Rails.application.routes.draw do
   resources :addresses
   resources :comments
   resources :employees
-  resources :orders, except: [:new]
+  resources :orders, except: [:new, :create]
 
   namespace :business do
     resources :customers, except: %i[show destroy] do
@@ -50,9 +50,9 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :verifications, only: [:index]
-      get '/products', to: 'verifications#products', defaults: { format: 'json' }
-      get '/orders', to: 'verifications#orders', defaults: { format: 'json' }
-      get '/customers', to: 'verifications#customers', defaults: { format: 'json' }
+      get '/products', to: 'verifications#products'
+      get '/orders', to: 'verifications#orders'
+      get '/customers', to: 'verifications#customers'
     end
   end
 end

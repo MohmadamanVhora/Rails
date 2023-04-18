@@ -4,18 +4,18 @@ module Api
       def index; end
 
       def products
-        @products = Product.unscoped.all
-        render json: @products
+        @products = Product.unscoped.all.to_json
+        render :index
       end
 
       def orders
-        @orders = Order.all
-        render json: @orders
+        @orders = Order.all.to_json
+        render :index
       end
 
       def customers
-        @customers = Customer.all
-        render json: @customers
+        @customers = Customer.all.to_json
+        render :index
       end
     end
   end

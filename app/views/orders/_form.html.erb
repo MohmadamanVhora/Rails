@@ -14,7 +14,7 @@
 </div>
 
 <div class="container text-center col-4">
-  <%= form_with model: order do |form| %>
+  <%= form_for [@product, @order] do |form| %>
     <div class="input-group mb-4">
       <%= form.label :quantity, class: "input-group-text" %>
       <%= form.number_field :quantity, class: "form-control", placeholder: "Enter How many products you want" %>
@@ -24,8 +24,6 @@
       <%= form.label 'Status', class: "input-group-text" %>
       <%= form.select :order_status, Order.statuses, { include_blank: 'Select Status' }, class: "form-control" %>
     </div>
-
-    <%= form.hidden_field :product_id, value: @product_id %>
 
     <div class="input-group mb-4">
       <%= form.label :customer, class: "input-group-text" %> 
