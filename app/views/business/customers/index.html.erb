@@ -1,0 +1,59 @@
+<div class="container justify-content-center mt-5 text-center w-50">
+  <%= form_with url: search_business_customers_path, method: :get, class: "form-inline" do |form| %> 
+    <div class="input-group mb-3"> 
+      <%= form.text_field :name, class: 'form-control mr-sm-2', placeholder: "Which customer would you like to Search"%> 
+      <%= form.submit "Search", class: 'btn btn-outline-success my-2 my-sm-0' %>
+    </div>
+  <% end %>
+
+  <div style="height:400px; overflow:auto;">
+    <table class="table table-bordered container table-hover table-striped">
+      <thead class="table-dark">
+        <tr>
+          <th>Name</th>
+          <th>Surname</th>
+          <th>Email</th>
+          <th>Phone no</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @customers.each do |customer| %>
+          <tr>
+            <td><%= customer.first_name %></td>
+            <td><%= customer.last_name %></td>
+            <td><%= customer.email %></td>
+            <td><%= customer.phone_number %></td>
+            <td><%= link_to raw('<i class="fa-solid fa-eye fa-lg" style="color: #12e4f3;"></i>'), preview_business_customer_path(customer), class: "btn m-0", title: "Preview" %>
+            <%= link_to raw('<i class="fa-solid fa-pen-to-square fa-lg" style="color: #f4e32a;"></i>'), edit_business_customer_path(customer), class: "btn", title: "Edit" %>
+            <%= link_to raw('<i class="fa-solid fa-trash-can fa-lg" style="color: #f02828;"></i>'), delete_business_customer_path(customer), class: "btn", title: "Remove", data: { turbo_method: :delete, turbo_confirm: :"Are You Sure?" } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  
+  <div class="mt-4">
+    <%= link_to "Add", new_business_customer_path, class: "btn btn-info ms-3 px-3" %>
+    <%= link_to "All", business_customers_path, class: "btn btn-info ms-3 px-4" %>
+  </div>
+
+  <div class="container justify-content-center mt-5 w-50">
+    <table class="table table-bordered">
+      <tbody>
+        <tr>
+          <td><%= link_to "most sales product by quantity", business_task_path(1) %></td>
+        </tr>
+        <tr>
+          <td><%= link_to "most sales product by price", business_task_path(2) %></td>
+        </tr>
+        <tr>
+          <td><%= link_to "most booked order of product", business_task_path(3) %></td>
+        </tr>
+        <tr>
+          <td><%= link_to "most canceled order of product", business_task_path(4) %></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

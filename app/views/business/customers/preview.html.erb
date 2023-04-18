@@ -21,9 +21,9 @@
   </table>
 
   <div class="my-4">
-    <%= link_to raw('<i class="fa-solid fa-pen-to-square fa-2xl" style="color: #f4e32a;"></i>'), edit_customer_path(@customer), :class => "btn", title: "Edit" %>
-    <%= link_to raw('<i class="fa-solid fa-trash-can fa-2xl" style="color: #f02828;"></i>'), customer_path(@customer), :class => "btn", title: "Remove", data: { turbo_method: :delete, turbo_confirm: :"Are You Sure?" } %>
-    <%= link_to raw('<i class="fa-solid fa-list fa-2xl" style="color: #12e4f3";></i>'), customers_path, :class => 'btn', title: "All" %>
+    <%= link_to raw('<i class="fa-solid fa-pen-to-square fa-2xl" style="color: #f4e32a;"></i>'), edit_business_customer_path(@customer), :class => "btn", title: "Edit" %>
+    <%= link_to raw('<i class="fa-solid fa-trash-can fa-2xl" style="color: #f02828;"></i>'), delete_business_customer_path(@customer), :class => "btn", title: "Remove", data: { turbo_method: :delete, turbo_confirm: :"Are You Sure?" } %>
+    <%= link_to raw('<i class="fa-solid fa-list fa-2xl" style="color: #12e4f3";></i>'), business_customers_path, :class => 'btn', title: "All" %>
   </div>
 </div>
             

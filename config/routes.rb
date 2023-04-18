@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'users#index'
+  root 'products#index'
   get '/search', to: 'cars#search'
   get '/login', to: 'users#login'
   get '/download_pdf', to: 'cars#download_pdf'
@@ -15,14 +15,17 @@ Rails.application.routes.draw do
   get '/employees/change_order/:order/:id', to: 'employees#change_order', as: "change_order"
   get '/employees/first_10_employees', to: 'employees#first_ten_employees', as: "first_ten_employees"
   get '/employees/tasks', to: 'employees#task', as: "tasks"
+
   get '/products/active_products', to: 'products#active_products', as: "active_products"
-  get '/orders/new/:product_id', to: 'orders#new', as: "new_order"
   get '/orders/filter', to: 'orders#filter', as: "filter_orders"
   get '/orders/search', to: 'orders#search', as: "search_orders"
-  get '/customers/task/:task_id', to: 'customers#task', as: "task"
-
+  
   resources :home
-  resources :products
+  
+  resources :products do
+    resources :orders, only: [:new]
+  end
+  
   resources :authors
   resources :books
   resources :students
@@ -33,6 +36,23 @@ Rails.application.routes.draw do
   resources :addresses
   resources :comments
   resources :employees
-  resources :customers
   resources :orders, except: [:new]
+
+  namespace :business do
+    resources :customers, except: %i[show destroy] do
+      get '/preview', to: 'customers#preview', on: :member
+      delete '/delete', to: 'customers#delete_customer', on: :member
+      get '/search', to: 'customers#search', on: :collection
+    end
+    get '/customers/task/:task_id', to: 'customers#task', as: "task"
+  end
+
+  namespace :api do
+    namespace :v1 do
+      resources :verifications, only: [:index]
+      get '/products', to: 'verifications#products', defaults: { format: 'json' }
+      get '/orders', to: 'verifications#orders', defaults: { format: 'json' }
+      get '/customers', to: 'verifications#customers', defaults: { format: 'json' }
+    end
+  end
 end
