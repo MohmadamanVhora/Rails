@@ -1,0 +1,24 @@
+<div class="container justify-content-center mt-5 text-center w-50">
+  <div style="height:400px; overflow:auto;">
+    <table class="table table-bordered container table-hover table-striped">
+      <thead class="table-dark">
+        <tr>
+          <th>Name</th>
+          <th>Surname</th>
+          <th>Email</th>
+          <th>Phone no</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @customers.each do |customer| %>
+          <tr>
+            <td><%= customer.first_name %></td>
+            <td><%= customer.last_name %></td>
+            <td><%= customer.email %></td>
+            <td><%= customer.phone_number %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
