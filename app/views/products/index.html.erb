@@ -24,7 +24,7 @@
             <td><%= link_to raw('<i class="fa-solid fa-eye fa-lg" style="color: #12e4f3;"></i>'), product_path(product), class: "btn m-0", title: "Show" %>
             <%= link_to raw('<i class="fa-solid fa-pen-to-square fa-lg" style="color: #f4e32a;"></i>'), edit_product_path(product), class: "btn", title: "Edit" %>
             <%= link_to raw('<i class="fa-solid fa-trash-can fa-lg" style="color: #f02828;"></i>'), product_path(product), class: "btn", title: "Remove", data: { turbo_method: :delete, turbo_confirm: :"Are You Sure?" } %>
-            <%= link_to "Order now!", new_order_path(product), class: "btn btn-info" %></td>
+            <%= link_to "Order now!", new_product_order_path(product), class: "btn btn-info" %></td>
           </tr>
         <% end %>
       </tbody>
@@ -34,24 +34,25 @@
   <div class="mt-5">
     <%= link_to "Add", new_product_path, class: "btn btn-info ms-3" %>
     <%= link_to "Active Products", active_products_path, class: "btn btn-info ms-3" %>
-    <%= link_to "Customers", customers_path, class: "btn btn-info ms-3" %>
+    <%= link_to "Customers", business_customers_path, class: "btn btn-info ms-3" %>
     <%= link_to "Orders", orders_path, class: "btn btn-info ms-3" %>
+    <%= link_to "Namespace Routing", api_v1_verifications_path, class: "btn btn-info ms-3" %>
   </div>
 
   <div class="container justify-content-center mt-5 w-50">
     <table class="table table-bordered">
       <tbody>
         <tr>
-          <td><%= link_to "most sales product by quantity", task_path(1) %></td>
+          <td><%= link_to "most sales product by quantity", business_task_path(1) %></td>
         </tr>
         <tr>
-          <td><%= link_to "most sales product by price", task_path(2) %></td>
+          <td><%= link_to "most sales product by price", business_task_path(2) %></td>
         </tr>
         <tr>
-          <td><%= link_to "most booked order of product", task_path(3) %></td>
+          <td><%= link_to "most booked order of product", business_task_path(3) %></td>
         </tr>
         <tr>
-          <td><%= link_to "most canceled order of product", task_path(4) %></td>
+          <td><%= link_to "most canceled order of product", business_task_path(4) %></td>
         </tr>
       </tbody>
     </table>

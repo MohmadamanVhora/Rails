@@ -8,12 +8,12 @@ class OrdersController < ApplicationController
   def show; end
 
   def new
-    @product_id = Product.unscoped.find(params[:product_id]).id
+    @product = Product.unscoped.find(params[:product_id])
     @order = Order.new
   end
 
   def create
-    product = Product.unscoped.find(order_params[:product_id])
+    product = Product.unscoped.find(params[:product_id])
     @order = product.orders.new(order_params)
     if @order.save
       redirect_to @order
@@ -54,7 +54,7 @@ class OrdersController < ApplicationController
 
   private
   def order_params
-    params.require(:order).permit(:quantity, :order_status, :product_id, :customer_id)
+    params.require(:order).permit(:quantity, :order_status, :customer_id)
   end
 
   def find_order

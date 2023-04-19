@@ -14,7 +14,7 @@
 </div>
 
 <div class="container text-center col-4">
-  <%= form_with model: customer do |form| %>
+  <%= form_with model: customer, url: url do |form| %>
     <div class="input-group mb-4">
       <%= form.label :name, class: "input-group-text" %>
       <%= form.text_field :first_name, class: "form-control", placeholder: "Enter First Name" %>
