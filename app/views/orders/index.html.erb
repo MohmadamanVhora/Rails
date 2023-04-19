@@ -15,34 +15,7 @@
   </div>
 
   <div style="height:400px; overflow:auto;">
-    <% if defined? @orders_by_product_name %>
-      <table class="table table-bordered container table-hover table-striped">
-        <thead class="table-dark">
-          <tr>
-            <th>Order Id</th>
-            <th>Product</th>
-            <th>Quantity</th>
-            <th>Total Price</th>
-            <th>Status</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @orders_by_product_name.each do |order| %>
-            <tr>
-              <td><%= order.id %></td>
-              <td><%= order.product.title %></td>
-              <td><%= order.quantity %></td>
-              <td><%= order.total_price %></td>
-              <td><%= order.order_status %></td>
-              <td><%= link_to raw('<i class="fa-solid fa-eye fa-lg" style="color: #12e4f3;"></i>'), order_path(order), class: "btn m-0", title: "Show" %>
-              <%= link_to raw('<i class="fa-solid fa-pen-to-square fa-lg" style="color: #f4e32a;"></i>'), edit_order_path(order), class: "btn", title: "Edit" %>
-              <%= link_to raw('<i class="fa-solid fa-trash-can fa-lg" style="color: #f02828;"></i>'), order_path(order), class: "btn", title: "Remove", data: { turbo_method: :delete, turbo_confirm: :"Are You Sure?" } %></td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-    <% else %>
+    <% if @orders.present? %>
       <table class="table table-bordered container table-hover table-striped">
         <thead class="table-dark">
           <tr>
@@ -62,6 +35,33 @@
               <td><%= order.total_price %></td>
               <td><%= order.order_status %></td>
               <td><%= order.customer.first_name %> <%= order.customer.last_name %></td>
+              <td><%= link_to raw('<i class="fa-solid fa-eye fa-lg" style="color: #12e4f3;"></i>'), order_path(order), class: "btn m-0", title: "Show" %>
+              <%= link_to raw('<i class="fa-solid fa-pen-to-square fa-lg" style="color: #f4e32a;"></i>'), edit_order_path(order), class: "btn", title: "Edit" %>
+              <%= link_to raw('<i class="fa-solid fa-trash-can fa-lg" style="color: #f02828;"></i>'), order_path(order), class: "btn", title: "Remove", data: { turbo_method: :delete, turbo_confirm: :"Are You Sure?" } %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% else %>
+      <table class="table table-bordered container table-hover table-striped">
+        <thead class="table-dark">
+          <tr>
+            <th>Order Id</th>
+            <th>Product</th>
+            <th>Quantity</th>
+            <th>Total Price</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @orders_by_product_name.each do |order| %>
+            <tr>
+              <td><%= order.id %></td>
+              <td><%= order.product.title %></td>
+              <td><%= order.quantity %></td>
+              <td><%= order.total_price %></td>
+              <td><%= order.order_status %></td>
               <td><%= link_to raw('<i class="fa-solid fa-eye fa-lg" style="color: #12e4f3;"></i>'), order_path(order), class: "btn m-0", title: "Show" %>
               <%= link_to raw('<i class="fa-solid fa-pen-to-square fa-lg" style="color: #f4e32a;"></i>'), edit_order_path(order), class: "btn", title: "Edit" %>
               <%= link_to raw('<i class="fa-solid fa-trash-can fa-lg" style="color: #f02828;"></i>'), order_path(order), class: "btn", title: "Remove", data: { turbo_method: :delete, turbo_confirm: :"Are You Sure?" } %></td>

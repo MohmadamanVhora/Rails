@@ -48,7 +48,6 @@ class OrdersController < ApplicationController
 
   def search
     products = Product.unscoped.where("lower(title) Like ?", "%#{params[:title].downcase}%")
-    return if products.nil?
     @orders_by_product_name = Order.where(product_id: products.ids)
     render :index
   end
